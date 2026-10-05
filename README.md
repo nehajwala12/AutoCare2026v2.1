@@ -1,9 +1,9 @@
 # Ares commercial diligence (password-protected site)
 
-The site is `index.html`: CreditSwan's commercial diligence for Ares Management on automotive repair and tire replacement and the three active opportunities (Monro, Main Street Automotive, Straightaway), dated 5 October 2026, with the Monro term-sheet section. `middleware.js` asks for a password on every request before anything is served.
+The site is `index.html`: CreditSwan's commercial diligence for Ares Management on automotive repair and tire replacement and the three active opportunities (Monro, Main Street Automotive, Straightaway), dated 5 October 2026, with the Monro term-sheet section. `middleware.js` shows a sign-in page that asks for one thing, the password, before anything is served. There is no username.
 
 - Password: `AutoCare2026`
-- Username: anything (the browser asks for both; leave the name blank or type any word)
+- After the password is entered, the browser stays signed in for 12 hours (a secure, HttpOnly cookie); closing that window and coming back within that time does not ask again.
 
 ## Deploy
 
@@ -26,4 +26,4 @@ In the Vercel project, go to Settings, then Environment Variables. Add `SITE_PAS
 
 - Search engines are told not to index the site (`X-Robots-Tag` header and `robots.txt`).
 - The brand fonts are embedded in `index.html`; the page also requests Google Fonts and reads correctly without them. Everything else is inside `index.html`.
-- `middleware.js` handles the password, `vercel.json` sets the headers, `package.json` and `package-lock.json` declare the one dependency (`@vercel/functions`), and `.gitignore` keeps `node_modules` and `.vercel` out of the repository.
+- `middleware.js` serves the sign-in page and checks the password, `vercel.json` sets the headers, `package.json` and `package-lock.json` declare the one dependency (`@vercel/functions`), and `.gitignore` keeps `node_modules` and `.vercel` out of the repository.
